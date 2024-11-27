@@ -10,9 +10,8 @@ submitTodoBtn.addEventListener('click', (e) => submitTodoForm(e))
 
 function openAddTodoFormDialog()
 {
-    console.log('Form dialog opened')
+    addTodoFormDialog.showModal()
 }
-addTodoFormDialog.showModal()
 
 function closeAddTodoFormDialog()
 {
