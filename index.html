@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,26 @@
     <script src="js/main.js" defer></script>
     <title>Todo App with Supabase</title>
 </head>
+
 <body>
+    <!-- Add Todo Form -->
+    <dialog class="add-todo-form-dialog" id="add_todo_form_dialog">
+        <header>
+            <h3>Add Todo</h3>
+        </header>
+
+        <form method="POST">
+            <input type="text" name="todo_input" id="todo_input" class="input todo-input" placeholder="Enter todo">
+            <button class="btn submit-todo-btn" id="submit_todo_btn">
+                Add Todo
+            </button>
+        </form>
+    </dialog>
+
     <!-- Open Add Todo Form Btn -->
     <button class="btn open-add-todo-form-btn" id="open_add_todo_form_btn">
         <i class="fas fa-plus"></i>
     </button>
 </body>
+
 </html>
-
-
-

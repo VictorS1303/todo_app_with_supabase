@@ -1,0 +1,19 @@
+.btn
+{
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: opacity .15s ease-in;
+
+    &:hover
+    {
+        opacity: .85;
+        transition: opacity .15s ease-in;
+    }
+
+    &:active
+    {
+        transform: scale(.98);
+        box-shadow: none;
+        transition: none;
+    }
+}

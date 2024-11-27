@@ -27,6 +27,8 @@
     --primary-text-color: #fff;
     --secondry-text-color: ;
     --open-form-btn-background-color: #3358c9;
+    --add-todo-btn-background-color: #3358c9;
+    --dialog-background-color: #7194ff;
   
     /* Radii */
     --base-border-radius: 10px;
