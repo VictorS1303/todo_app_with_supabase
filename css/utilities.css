@@ -1,4 +1,4 @@
-.btn
+.todo-control-btn
 {
     box-shadow: var(--box-shadow);
     cursor: pointer;
@@ -15,5 +15,57 @@
         transform: scale(.98);
         box-shadow: none;
         transition: none;
+    }
+}
+
+/* Todo Control Buttons */
+.todo-list-controls-buttons-container
+{
+    & i
+    {
+        font-size: var(--heading-six-font-size);
+    }
+}
+/* Complete Todo Button */
+.complete-todo-btn
+{
+    color: var(--complete-todo-btn-color);
+    transition: color .2s ease-in, background-color .2s ease-in;
+
+    &:hover
+    {
+        background-color: var(--complete-todo-btn-color);
+        color: var(--primary-text-color);
+        transition: color .2s ease-in, background-color .2s ease-in;
+    }
+}
+
+/* Update Todo Btn */
+.update-todo-btn
+{
+    color: var(--update-todo-btn-color);
+
+    transition: color .2s ease-in, background-color .2s ease-in;
+
+    &:hover
+    {
+        background-color: var(--update-todo-btn-color);
+        color: var(--primary-text-color);
+        transition: color .2s ease-in, background-color .2s ease-in;
+    }
+}
+
+/* Update Todo Btn */
+.delete-todo-btn
+{
+    color: var(--delete-todo-btn-color);
+
+    transition: color .2s ease-in, background-color .2s ease-in;
+
+    &:hover
+    {
+        background-color: var(--delete-todo-btn-color);
+        color: var(--primary-text-color);
+        transition: color .2s ease-in, background-color .2s ease-in;
     }
 }

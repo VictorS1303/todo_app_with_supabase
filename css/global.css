@@ -19,16 +19,18 @@
     --heading-three-font-size: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
     --heading-four-font-size: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
     --heading-five-font-size: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
-    --heading-six-font-size: clamp(0.075rem, -0.4424rem + 2.587vw, 1.5625rem);
-    --paragraph-font-size: clamp(0.8333rem, 0.7754rem + 0.2899vw, 1rem);
+    --heading-six-font-size: clamp(0.8333rem, 0.7754rem + 0.2899vw, 1rem);
+    --paragraph-font-size: clamp( 0.075rem, -0.4424rem + 2.587vw, 1.5625rem);
         
     /* Colors */
     --body-background-color: #7194ff;
     --primary-text-color: #fff;
-    --secondry-text-color: ;
     --open-form-btn-background-color: #3358c9;
     --add-todo-btn-background-color: #3358c9;
     --dialog-background-color: #7194ff;
+    --complete-todo-btn-color: #008080;
+    --update-todo-btn-color: #acac26;
+    --delete-todo-btn-color: #ff2600;
   
     /* Radii */
     --base-border-radius: 10px;
@@ -40,6 +42,9 @@
 
 body
 {
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
     font-family: 'Ubuntu Sans Mono', sans-serif;
     background-color: var(--body-background-color);
 }
@@ -98,4 +103,5 @@ li
 button
 {
     background-color: transparent;
+    cursor: pointer;
 }
