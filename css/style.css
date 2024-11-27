@@ -1,0 +1,28 @@
+.open-add-todo-form-btn
+{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    font-size: 2rem;
+    color: var(--primary-text-color);
+    background-color: var(--open-form-btn-background-color);
+    height: 60px;
+    width: 60px;
+    border-radius: calc(var(--base-border-radius) * 5);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: opacity .15s ease-in;
+
+    &:hover
+    {
+        opacity: .85;
+        transition: opacity .15s ease-in;
+    }
+
+    &:active
+    {
+        transform: scale(.98);
+        box-shadow: none;
+        transition: none;
+    }
+}

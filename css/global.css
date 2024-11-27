@@ -24,8 +24,9 @@
         
     /* Colors */
     --body-background-color: #7194ff;
-    --primary-text-color: ;
+    --primary-text-color: #fff;
     --secondry-text-color: ;
+    --open-form-btn-background-color: #3358c9;
   
     /* Radii */
     --base-border-radius: 10px;
@@ -90,4 +91,9 @@ a
 li
 {
     list-style: none;
+}
+
+button
+{
+    background-color: transparent;
 }
