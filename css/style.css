@@ -110,6 +110,11 @@ section.todo-list-section
             background-color: #fff;
             width: 100%;
 
+            &:not(:last-child)
+            {
+                margin-bottom: 20px;
+            }
+
             & span
             {
                 margin-left: 15px;
