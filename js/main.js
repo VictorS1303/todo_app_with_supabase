@@ -1,20 +1,22 @@
+// DOM Elements
 const addTodoFormDialog = document.getElementById('add_todo_form_dialog')
 const openAddTodoFormBtn = document.getElementById('open_add_todo_form_btn')
-const todoInputForm = document.getElementById('todo_input_form')
-const submitTodoBtn = document.getElementById('submit_todo_btn')
+const addTodoInputForm = document.getElementById('add_todo_input_form')
+const submitAddTodoBtn = document.getElementById('submit_add_todo_btn')
+const updateTodoFormDialog = document.getElementById('update_todo_form_dialog')
+const updateTodoInputForm = document.getElementById('update_todo_form_dialog')
+const submitUpdateTodoBtn = document.getElementById('submit_update_todo_btn')
 const todoListSection = document.getElementById('todo_list_section')
 const todoListContainer = document.getElementById('todo_list_container')
 
-
-
 // EVENT LISTENERS //
 openAddTodoFormBtn.addEventListener('click', openAddTodoFormDialog)
-submitTodoBtn.addEventListener('click', (e) => submitTodoForm(e))
+submitAddTodoBtn.addEventListener('click', (e) => submitAddTodoForm(e))
+updateTodoInputForm.addEventListener('submit', (e) => submitUpdateTodoForm(e))
 todoListContainer.addEventListener('click', (e) => determineTodoAction(e))
 
 
-// FUNCTIONS //
-
+// --- Todo Form Dialogs ---
 // Add Todo Form Dialog
 function openAddTodoFormDialog()
 {
@@ -26,16 +28,39 @@ function closeAddTodoFormDialog()
     addTodoFormDialog.close()
 }
 
-
-function submitTodoForm(e)
+function closeUpdateTodoFormDialog()
 {
-    e.preventDefault()
-    createTodo(e)
-    closeAddTodoFormDialog()
+    updateTodoFormDialog.close()
 }
 
 
-// Determine Todo Action
+// --- Todo Form Submission Handlers ---
+// Submit Add Todo Form
+function submitAddTodoForm(e)
+{
+    e.preventDefault()
+    createTodo()
+}
+
+// Submit Update Todo Form
+function submitUpdateTodoForm(e)
+{
+    e.preventDefault()
+    updateTodoData()
+    closeUpdateTodoFormDialog()
+}
+
+// Handle Todo Update
+function updateTodoData()
+{
+    const updatedText = getFormData() // Get the updated text from the form
+    console.log('Updated Todo Text:', updatedText)
+    // Update the todo item in your list here
+}
+
+
+// --- Todo Item Actions ---
+// Determine Todo Action (Complete, Update, Delete)
 function determineTodoAction(e)
 {
     if(e.target.matches('.complete-todo-btn'))
@@ -52,7 +77,26 @@ function determineTodoAction(e)
     }
 }
 
+// Complete Todo
+function completeTodo()
+{
+    console.log('Todo completed!')
+}
 
+// Update Todo
+function updateTodo()
+{
+    updateTodoInputForm.showModal()
+}
+
+// Delete Todo
+function deleteTodo()
+{
+    console.log('Delete todo!')
+}
+
+
+// --- Todo Item Creation ---
 // Create Todo List Item
 function createTodoListItem()
 {
@@ -77,10 +121,6 @@ function createTodoListItem()
     deleteTodoBtn.appendChild(deleteTodoBtnIcon)
 }
 
-
-
-
-/* Todo Item Utility Functions */
 // Create Todo LI
 function createTodoLI(todoLIClasses)
 {
@@ -106,6 +146,8 @@ function createTodoControlButtonsContainer(todoControlButtonsContainerClasses)
     return todoControlButtonsContainer
 }
 
+
+// --- Todo Control Buttons ---
 // Create Control Button
 function createTodoControlButton(todoControlButtonClasses)
 {
@@ -165,47 +207,25 @@ function createDeleteTodoControlButtonIcon()
 }
 
 
-// Complete Todo
-function completeTodo()
-{
-    console.log('Todo completed!')
-}
-
-// Update Todo
-function updateTodo()
-{
-    console.log('Update todo!')
-}
-
-// Delete Todo
-function deleteTodo()
-{
-    console.log('Delete todo!')
-}
-
-function submitTodoForm(e)
-{
-    e.preventDefault()
-    createTodo()
-}
-
-function createTodo()
-{
-    const todoText = getFormData();
-
-    if (todoText) 
-    {
-        createTodoListItem(todoText);
-        todoInputForm.reset()
-    }
-
-    closeAddTodoFormDialog();
-}
-
-
+// --- Utility Functions ---
+// Get Form Data
 function getFormData()
 {
-    const formData = new FormData(todoInputForm)
+    const formData = new FormData(addTodoInputForm)
     const inputData = formData.get('todo_input')
     return inputData
+}
+
+// Create Todo
+function createTodo()
+{
+    const todoText = getFormData()
+
+    if (todoText)
+    {
+        createTodoListItem(todoText)
+        addTodoInputForm.reset()
+    }
+
+    closeAddTodoFormDialog()
 }

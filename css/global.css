@@ -31,6 +31,9 @@
     --complete-todo-btn-color: #008080;
     --update-todo-btn-color: #acac26;
     --delete-todo-btn-color: #ff2600;
+
+    --update-dialog-background-color: #acac26;
+    --update-todo-btn-background-color: #fff;
   
     /* Radii */
     --base-border-radius: 10px;
@@ -103,5 +106,6 @@ li
 button
 {
     background-color: transparent;
+    white-space: nowrap;
     cursor: pointer;
 }
