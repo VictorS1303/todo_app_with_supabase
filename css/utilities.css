@@ -171,3 +171,10 @@ dialog
         }
     }
 }
+
+/* Completed */
+.completed
+{
+    text-decoration: line-through;
+    color: var(--completed-text-color);
+}

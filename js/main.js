@@ -9,6 +9,8 @@ const submitUpdateTodoBtn = document.getElementById('submit_update_todo_btn')
 const todoListSection = document.getElementById('todo_list_section')
 const todoListContainer = document.getElementById('todo_list_container')
 
+
+
 // EVENT LISTENERS //
 openAddTodoFormBtn.addEventListener('click', openAddTodoFormDialog)
 submitAddTodoBtn.addEventListener('click', (e) => submitAddTodoForm(e))
@@ -16,7 +18,7 @@ updateTodoInputForm.addEventListener('submit', (e) => submitUpdateTodoForm(e))
 todoListContainer.addEventListener('click', (e) => determineTodoAction(e))
 
 
-// --- Todo Form Dialogs ---
+
 // Add Todo Form Dialog
 function openAddTodoFormDialog()
 {
@@ -59,13 +61,13 @@ function updateTodoData()
 }
 
 
-// --- Todo Item Actions ---
+
 // Determine Todo Action (Complete, Update, Delete)
 function determineTodoAction(e)
 {
     if(e.target.matches('.complete-todo-btn'))
     {
-        completeTodo()
+        completeTodo(e)
     }
     else if(e.target.matches('.update-todo-btn'))
     {
@@ -78,10 +80,17 @@ function determineTodoAction(e)
 }
 
 // Complete Todo
-function completeTodo()
+function completeTodo(e)
 {
-    console.log('Todo completed!')
+    e.target.closest('.todo-list-item').firstElementChild.classList.toggle('completed')
+    showCompletedMessage()
 }
+
+function showCompletedMessage()
+{
+    alert('Todo completed!')
+}
+
 
 // Update Todo
 function updateTodo()
