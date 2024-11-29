@@ -35,6 +35,9 @@
     --update-dialog-background-color: #acac26;
     --update-todo-btn-background-color: #fff;
     --completed-text-color: #008080;
+    --completed-message-background-color: #008080;
+    --updated-message-background-color: #acac26;
+    --deleted-message-background-color: #ff2600;
   
     /* Radii */
     --base-border-radius: 10px;

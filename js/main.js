@@ -4,11 +4,14 @@ const openAddTodoFormBtn = document.getElementById('open_add_todo_form_btn')
 const addTodoInputForm = document.getElementById('add_todo_input_form')
 const submitAddTodoBtn = document.getElementById('submit_add_todo_btn')
 const updateTodoFormDialog = document.getElementById('update_todo_form_dialog')
-const updateTodoInputForm = document.getElementById('update_todo_form_dialog')
+const updateTodoInputForm = document.getElementById('update_todo_input_form')
+const updateTodoInput = document.getElementById('update_todo_input')
 const submitUpdateTodoBtn = document.getElementById('submit_update_todo_btn')
 const todoListSection = document.getElementById('todo_list_section')
 const todoListContainer = document.getElementById('todo_list_container')
-
+const actionMessageContainer = document.getElementById('action_messages_container')
+const actionMessage = document.getElementById('action_message_text')
+const actionMessageIcon = document.getElementById('action_message_icon')
 
 
 // EVENT LISTENERS //
@@ -48,60 +51,120 @@ function submitAddTodoForm(e)
 function submitUpdateTodoForm(e)
 {
     e.preventDefault()
-    updateTodoData()
+    updateTodoData(e)
     closeUpdateTodoFormDialog()
+    updateTodoFormDialog.close()
 }
 
-// Handle Todo Update
-function updateTodoData()
-{
-    const updatedText = getFormData() // Get the updated text from the form
-    console.log('Updated Todo Text:', updatedText)
-    // Update the todo item in your list here
-}
+
 
 
 
 // Determine Todo Action (Complete, Update, Delete)
 function determineTodoAction(e)
 {
-    if(e.target.matches('.complete-todo-btn'))
+    if (e.target.matches('.complete-todo-btn'))
     {
         completeTodo(e)
     }
-    else if(e.target.matches('.update-todo-btn'))
+    else if (e.target.matches('.update-todo-btn'))
     {
-        updateTodo()
+        currentTodoItem = e.target.closest('.todo-list-item')
+        const currentText = currentTodoItem.querySelector('.todo-text').textContent
+        updateTodoInput.value = currentText
+        updateTodoFormDialog.showModal()
     }
-    else if(e.target.matches('.delete-todo-btn'))
+    else if (e.target.matches('.delete-todo-btn'))
     {
-        deleteTodo()
+        deleteTodo(e)
     }
+}
+
+// Clear all classes from complete message
+function clearCompleteMessageClasses()
+{
+    actionMessageContainer.classList.remove
+    (
+        'completed-message',
+        'updated-message',
+        'deleted-message',
+        'active'
+    )
 }
 
 // Complete Todo
 function completeTodo(e)
 {
-    e.target.closest('.todo-list-item').firstElementChild.classList.toggle('completed')
-    showCompletedMessage()
+    const completeTodoItem = e.target.closest('.todo-list-item').firstElementChild.classList.toggle('completed')
+    completeTodoItem ? showCompletedMessage() : null
 }
 
 function showCompletedMessage()
 {
-    alert('Todo completed!')
-}
+    clearCompleteMessageClasses()
+    actionMessageContainer.classList.add('completed-message', 'active')
+    actionMessage.textContent = 'Todo completed!'
 
+    setTimeout(() =>
+    {
+        actionMessageContainer.classList.remove('active')
+    }, 2000)
+}
 
 // Update Todo
-function updateTodo()
+function updateTodoData()
 {
-    updateTodoInputForm.showModal()
+    // Create a FormData object to access the form data
+    const formData = new FormData(updateTodoInputForm)
+
+    // Get the value of the input field with the name "add_todo_input"
+    const updateInputData = formData.get('update_todo_input')
+
+    if(currentTodoItem)
+    {
+        currentTodoItem.querySelector('.todo-text').textContent = updateInputData
+        currentTodoItem.classList.remove('completed')
+        showUpdatedMessage()
+    }
 }
 
-// Delete Todo
-function deleteTodo()
+function showUpdatedMessage()
 {
-    console.log('Delete todo!')
+    clearCompleteMessageClasses()
+
+    actionMessageContainer.classList.add('updated-message', 'active')
+    actionMessage.textContent = 'Todo updated!'
+
+    setTimeout(() =>
+    {
+        actionMessageContainer.classList.remove('active')
+    }, 2000)
+}
+
+
+// Delete Todo
+function deleteTodo(e)
+{
+    const isWantingToDeleteTodo = confirm('Do you want to delete the todo?')
+
+    if (isWantingToDeleteTodo && confirm('Are you really sure you want to delete the todo? It cannot be undone!'))
+    {
+        e.target.closest('.todo-list-item').remove()
+        showDeletedMessage()
+    }
+}
+
+function showDeletedMessage()
+{
+    clearCompleteMessageClasses()
+
+    actionMessageContainer.classList.add('deleted-message', 'active')
+    actionMessage.textContent = 'Todo deleted!'
+
+    setTimeout(() =>
+    {
+        actionMessageContainer.classList.remove('active')
+    }, 2000)
 }
 
 
@@ -111,7 +174,7 @@ function createTodoListItem()
 {
     const todoLI = createTodoLI('todo-list-item')
     const todoSpan = createTodoSpan('todo-text')
-    const todoControlButtonsContainer = createTodoControlButtonsContainer('container todo-list-controls-buttons-container') 
+    const todoControlButtonsContainer = createTodoControlButtonsContainer('container todo-list-controls-buttons-container')
     const completeTodoBtn = createCompleteTodoControlButton()
     const completeTodoBtnIcon = createCompleteTodoControlButtonIcon()
     const updateTodoBtn = createUpdateTodoControlButton()
@@ -221,7 +284,7 @@ function createDeleteTodoControlButtonIcon()
 function getFormData()
 {
     const formData = new FormData(addTodoInputForm)
-    const inputData = formData.get('todo_input')
+    const inputData = formData.get('add_todo_input')
     return inputData
 }
 
@@ -230,8 +293,7 @@ function createTodo()
 {
     const todoText = getFormData()
 
-    if (todoText)
-    {
+    if (todoText) {
         createTodoListItem(todoText)
         addTodoInputForm.reset()
     }

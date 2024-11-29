@@ -13,7 +13,13 @@
 </head>
 
 <body>
-
+    <div class="container action-messages-container" id="action_messages_container">
+        <article class="message action-message" id="action_message">
+            <h5 class="action-message-text" id="action_message_text">
+                <i class="" id="action_message_icon"></i>
+            </h5>
+        </article>
+    </div>
     <!-- Add Todo Form -->
     <dialog class="add-todo-form-dialog" id="add_todo_form_dialog">
         <header>
@@ -21,7 +27,7 @@
         </header>
 
         <form class="todo-input-form" id="add_todo_input_form">
-            <input type="text" name="todo_input" id="todo_input" class="input todo-input" placeholder="Enter todo">
+            <input type="text" name="add_todo_input" id="add_todo_input" class="input todo-input" placeholder="Enter todo">
             <button class="btn submit-add-todo-btn" id="submit_add_todo_btn">
                 Add Todo
             </button>
@@ -34,8 +40,8 @@
             <h3>Update Todo</h3>
         </header>
 
-        <form class="todo-input-form" id="todo_input_form">
-            <input type="text" name="todo_input" id="todo_input" class="input todo-input" placeholder="Enter todo">
+        <form class="todo-input-form" id="update_todo_input_form">
+            <input type="text" name="update_todo_input" id="update_todo_input" class="input update_todo_input" placeholder="Enter todo">
             <button class="btn submit-update-todo-btn" id="submit_update_todo_btn">
                 Update Todo
             </button>
