@@ -63,19 +63,16 @@ function submitUpdateTodoForm(e)
 // Determine Todo Action (Complete, Update, Delete)
 function determineTodoAction(e)
 {
-    if (e.target.matches('.complete-todo-btn'))
-    {
+    if (e.target.matches('.complete-todo-btn')) {
         completeTodo(e)
     }
-    else if (e.target.matches('.update-todo-btn'))
-    {
+    else if (e.target.matches('.update-todo-btn')) {
         currentTodoItem = e.target.closest('.todo-list-item')
         const currentText = currentTodoItem.querySelector('.todo-text').textContent
         updateTodoInput.value = currentText
         updateTodoFormDialog.showModal()
     }
-    else if (e.target.matches('.delete-todo-btn'))
-    {
+    else if (e.target.matches('.delete-todo-btn')) {
         deleteTodo(e)
     }
 }
@@ -84,12 +81,12 @@ function determineTodoAction(e)
 function clearCompleteMessageClasses()
 {
     actionMessageContainer.classList.remove
-    (
-        'completed-message',
-        'updated-message',
-        'deleted-message',
-        'active'
-    )
+        (
+            'completed-message',
+            'updated-message',
+            'deleted-message',
+            'active'
+        )
 }
 
 // Complete Todo
@@ -117,17 +114,21 @@ function updateTodoData()
     // Create a FormData object to access the form data
     const formData = new FormData(updateTodoInputForm)
 
-    // Get the value of the input field with the name "add_todo_input"
+    // Get the value of the input field with the name "update_todo_input"
     const updateInputData = formData.get('update_todo_input')
 
-    if(currentTodoItem)
+    if (currentTodoItem)
     {
+        // Update the todo text
         currentTodoItem.querySelector('.todo-text').textContent = updateInputData
-        currentTodoItem.classList.remove('completed')
+
+        // Remove the 'completed' class if it exists
+        currentTodoItem.querySelector('.todo-text').classList.remove('completed');
+        
+        // Show the updated message
         showUpdatedMessage()
     }
 }
-
 function showUpdatedMessage()
 {
     clearCompleteMessageClasses()
@@ -147,8 +148,7 @@ function deleteTodo(e)
 {
     const isWantingToDeleteTodo = confirm('Do you want to delete the todo?')
 
-    if (isWantingToDeleteTodo && confirm('Are you really sure you want to delete the todo? It cannot be undone!'))
-    {
+    if (isWantingToDeleteTodo && confirm('Are you really sure you want to delete the todo? It cannot be undone!')) {
         e.target.closest('.todo-list-item').remove()
         showDeletedMessage()
     }
